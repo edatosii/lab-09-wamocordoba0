@@ -91,7 +91,12 @@ public class EstudianteServlet extends HttpServlet {
             request.getRequestDispatcher(VISTA_FORMULARIO).forward(request, response);
             return;
         }
-
+        if ("listar".equals(accion) || accion == null) {
+            request.setAttribute("estudiantes", dao.listar());
+            request.getRequestDispatcher(VISTA_LISTAR).forward(request, response);
+            return;
+        }
+        
         // TODO Etapa 6: según 'accion' (ver CONTRATO arriba), lo que falta:
         //   - null o "listar": setAttribute("estudiantes", ...) y forward a VISTA_LISTAR
         //   - "editar": convierta "id" a int (cuidado con NumberFormatException), busque con el DAO,
