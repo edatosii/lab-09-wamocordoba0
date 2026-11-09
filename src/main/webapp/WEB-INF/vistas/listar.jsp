@@ -19,7 +19,12 @@
         <h1>Estudiantes</h1>
     </header>
     <main>
-        <p><a class="boton" href="estudiantes?accion=nuevo">Nuevo estudiante</a></p>
+        <p>
+            <a class="boton" href="estudiantes?accion=nuevo">Nuevo estudiante</a>
+            <%-- NAVEGACIÓN A MATERIAS DISPONIBLES--%>
+            <a class="boton" href="matriculas?accion=materias">Ver materias disponibles</a>
+            
+        </p>
         <table>
             <thead>
                 <tr><th>Id</th><th>Nombre</th><th>Correo</th><th>Semestre</th><th>Acciones</th></tr>
@@ -32,6 +37,10 @@
                     <td><%= Html.escapar(e.getCorreo()) %></td>
                     <td><%= e.getSemestre() %></td>
                     <td class="acciones">
+                        <%-- VISTA DE MATERIAS MATRICULADAS POR ESTUDIANTE agregar nuevas o eliminarlas--%>
+                        <a href="matriculas?accion=porEstudiante&estudianteId=<%= e.getId() %>">Materias</a>
+        
+
                         <a href="estudiantes?accion=editar&id=<%= e.getId() %>">Editar</a>
                         <form action="estudiantes" method="post"
                               onsubmit="return confirm('¿Eliminar este estudiante?');">
